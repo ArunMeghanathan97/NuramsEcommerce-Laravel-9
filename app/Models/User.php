@@ -13,6 +13,11 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
+     * @var string $table
+     */
+    public $table = "users";
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>

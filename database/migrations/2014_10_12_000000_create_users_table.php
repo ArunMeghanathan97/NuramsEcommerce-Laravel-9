@@ -13,10 +13,19 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        $tb = new App\Models\User();
+        Schema::create($tb->table, function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->comment("Customer name");
             $table->string('email')->unique();
+            $table->string("mobile")->comment("Mobile number");
+            $table->boolean("avtive")->comment("User active / deactive");
+            $table->integer("role")->comment("1 -> admin, 2 -> user");
+            $table->string("street");
+            $table->string("city");
+            $table->string("state");
+            $table->string("country");
+            $table->string("pincode");
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
@@ -31,6 +40,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        $tb = new App\Models\User();
+        Schema::dropIfExists($tb->table);
     }
 };
